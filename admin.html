@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Panel de Administración</h1>
+        <div id="pendingUsers"></div>
+        <button onclick="logout()">Cerrar Sesión</button>
+    </div>
+    <script src="admin.js"></script>
+    <script>
+        const currentUser = localStorage.getItem('currentUser');
+        if (!currentUser || usuarios[currentUser].rol !== 'administrador') {
+            window.location.href = 'login.html';
+        }
+
+        function mostrarPendientes() {
+            const pendingDiv = document.getElementById('pendingUsers');
+            pendingDiv.innerHTML = '<h2>Usuarios Pendientes</h2>';
+            for (let user in usuarios) {
+                if (!usuarios[user].aprobado && usuarios[user].rol !== 'administrador') {
+                    pendingDiv.innerHTML += `
+                        <p>${user} 
+                            <button onclick="aprobarUsuario('${user}')">Aprobar</button>
+                            <button onclick="rechazarUsuario('${user}')">Rechazar</button>
+                        </p>`;
+                }
+            }
+        }
+
+        function aprobarUsuario(username) {
+            usuarios[username].aprobado = true;
+            guardarUsuarios();
+            mostrarPendientes();
+        }
+
+        function rechazarUsuario(username) {
+            delete usuarios[username];
+            guardarUsuarios();
+            mostrarPendientes();
+        }
+
+        mostrarPendientes();
+    </script>
+</body>
+</html>
