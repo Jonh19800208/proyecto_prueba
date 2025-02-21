@@ -2,24 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>�rea Privada</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Acceso</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Bienvenido</h1>
-        <button onclick="logout()">Cerrar Sesi�n</button>
-        <div class="button-grid">
-            <a href="https://pagina1.com" class="btn">Bot�n 1</a>
-            <a href="https://pagina2.com" class="btn">Bot�n 2</a>
-            <a href="https://pagina3.com" class="btn">Bot�n 3</a>
-            <a href="https://pagina4.com" class="btn">Bot�n 4</a>
-            <a href="https://pagina5.com" class="btn">Bot�n 5</a>
-            <a href="https://pagina6.com" class="btn">Bot�n 6</a>
-            <a href="https://pagina7.com" class="btn">Bot�n 7</a>
-            <a href="https://pagina8.com" class="btn">Bot�n 8</a>
-        </div>
+    <div id="login-container" class="container">
+        <h2>Iniciar Sesión</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <button id="show-register">Registrarse</button>
     </div>
-    <script src="admin.js"></script>
+
+    <div id="register-container" class="container" style="display: none;">
+        <h2>Registro</h2>
+        <form id="register-form">
+            <input type="text" id="reg-username" placeholder="Usuario" required>
+            <input type="password" id="reg-password" placeholder="Contraseña" required>
+            <button type="submit">Solicitar Registro</button>
+        </form>
+        <button id="show-login">Volver al Login</button>
+    </div>
+
+    <div id="main-container" class="container" style="display: none;">
+        <h2>Bienvenido <span id="current-user"></span></h2>
+        <div id="admin-panel" style="display: none;">
+            <h3>Panel de Administrador</h3>
+            <div id="pending-users"></div>
+        </div>
+        <div class="buttons">
+            <button onclick="window.location.href='page1.html'">Página 1</button>
+            <button onclick="window.location.href='page2.html'">Página 2</button>
+            <button onclick="window.location.href='page3.html'">Página 3</button>
+            <button onclick="window.location.href='page4.html'">Página 4</button>
+            <button onclick="window.location.href='page5.html'">Página 5</button>
+            <button onclick="window.location.href='page6.html'">Página 6</button>
+            <button onclick="window.location.href='page7.html'">Página 7</button>
+            <button onclick="window.location.href='page8.html'">Página 8</button>
+        </div>
+        <button id="logout">Cerrar Sesión</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
